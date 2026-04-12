@@ -2,25 +2,26 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Mon site</title>
+    <title>EMJY'S APP</title>
     <link rel="stylesheet"  href="{{url_for('static', filename='style.css')}}">
 </head>
 
   <body>
-    <h1>Mon site Flask interactif</h1>
+    <h1>BIENVENUE SUR L'APPLICATION CONTACTS !</h1>
     <p id="demo">Ceci est mon premier site avec bouton interactif.</p>
     <button onclick="changerTexte()">Clique ici</button>
 
     <!-- Lien vers le JS -->
     <script src="{{ url_for('static', filename='script.js') }}"></script>
     
-<h2>Contactez-nous</h2>
+<h2>Informations du contact</h2>
 <form action="/submit" method="POST">
     <input type="text" name="nom" placeholder="Votre nom" required><br><br>
     <input type="email" name="email" placeholder="Votre email" required><br><br>
     <textarea name="message" placeholder="Votre message" required></textarea><br><br>
     <button type="submit">Envoyer</button>
 </form>
+<a href="/contacts">Voir les contacts</a>
 </body>
 
 </html>
