@@ -1,8 +1,9 @@
-"""
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Ajouter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <h1>Ajouter un contact</h1>
@@ -12,10 +13,11 @@
         <input type="text" name="prenom" placeholder="Prénom" required><br>
         <input type="text" name="telephone" placeholder="Téléphone"><br>
         <input type="email" name="email" placeholder="Email"><br>
-        <button type="submit">Ajouter</button>
+        <button type="submit"> Submit </button>
+        <button type="reset"> Reset </button>
     </form>
 
-    <a href="/">Retour</a>
+    
+   
 </body>
 </html>
-"""

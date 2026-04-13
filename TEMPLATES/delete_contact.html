@@ -1,0 +1,30 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Supprimer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Confirmation</h1>
+
+    <div class="container">
+        <p>Voulez-vous vraiment supprimer ce contact ?</p>
+
+        <p>
+            <strong>{{ contact.nom }} {{ contact.prenom }}</strong><br>
+            {{ contact.telephone }}<br>
+            {{ contact.email }}
+        </p>
+
+        <form method="POST">
+            <button type="submit">Oui, supprimer</button>
+            <a href="/">Annuler</a>
+        </form>
+    </div>
+
+   
+</body>
+</html>
+

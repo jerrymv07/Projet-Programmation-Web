@@ -1,36 +1,70 @@
-
 body {
-    background-color: #f0f8ff;  
     font-family: Arial, sans-serif;
-    text-align: center;
+    background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+    color: white;
     margin: 0;
     padding: 0;
 }
 
 h1 {
-    color: #1e90ff;  
-    margin-top: 50px;
-}
-
-
-p {
-    color: #333333;
-    font-size: 18px;
-}
-
-
-button {
-    background-color: #1e90ff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
+    text-align: center;
     margin-top: 20px;
+    font-size: 40px;
 }
 
+.container {
+    width: 80%;
+    margin: auto;
+    margin-top: 30px;
+    background: rgba(255,255,255,0.1);
+    padding: 20px;
+    border-radius: 10px;
+}
 
-button:hover {
-    background-color: #0b63c6;
+a, button {
+    background-color: #007BFF;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+a:hover, button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: none;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background: rgba(255,255,255,0.2);
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }

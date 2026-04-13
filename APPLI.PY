@@ -1,8 +1,7 @@
-
 from flask import Flask, render_template, request, redirect
 import sqlite3
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
 
 # -----------------------------
 # Connexion base de données
@@ -17,12 +16,12 @@ def get_db_connection():
 # -----------------------------
 def init_db():
     conn = get_db_connection()
-    conn.execute('''
-        CREATE TABLE IF NOT EXISTS contacts (
+    conn.execute(
+       ''' CREATE TABLE IF NOT EXISTS contacts (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             nom TEXT NOT NULL,
             prenom TEXT NOT NULL,
-            telephone TEXT,
+            telephone INTEGER,
             email TEXT
         )
     ''')
@@ -34,17 +33,18 @@ init_db()
 # -----------------------------
 # READ - afficher contacts
 # -----------------------------
-@app.route('/')
+@app.route('/index')
 def index():
     conn = get_db_connection()
-    contacts = conn.execute('SELECT * FROM contacts').fetchall()
+    Contacts = conn.execute('SELECT * FROM contacts').fetchall()
     conn.close()
-    return render_template('index.html', contacts=contacts)
+    return render_template('index.html', contacts=Contacts)
+
 
 # -----------------------------
 # CREATE - ajouter contact
 # -----------------------------
-@app.route('/add', methods=('GET', 'POST'))
+@app.route('/Add_contact', methods=('GET', 'POST'))
 def add():
     if request.method == 'POST':
         nom = request.form['nom']
@@ -61,12 +61,12 @@ def add():
         conn.close()
         return redirect('/')
 
-    return render_template('add.html')
+    return render_template('Add_contact.html')
 
 # -----------------------------
 # UPDATE - modifier contact
 # -----------------------------
-@app.route('/edit/<int:id>', methods=('GET', 'POST'))
+@app.route('/Update_contact/<int:id>', methods=('GET', 'POST'))
 def edit(id):
     conn = get_db_connection()
     contact = conn.execute('SELECT * FROM contacts WHERE id = ?', (id,)).fetchone()
@@ -86,14 +86,14 @@ def edit(id):
         return redirect('/')
 
     conn.close()
-    return render_template('edit.html', contact=contact)
+    return render_template('Update_contact.html', contact=contact)
 
 # -----------------------------
 # DELETE - supprimer contact
 # -----------------------------
 
 
-@app.route('/delete/<int:id>', methods=('GET', 'POST'))
+@app.route('/delete_contact/<int:id>', methods=('GET', 'POST'))
 def delete(id):
     conn = get_db_connection()
     contact = conn.execute('SELECT * FROM contacts WHERE id = ?', (id,)).fetchone()
@@ -105,26 +105,27 @@ def delete(id):
         return redirect('/')
 
     conn.close()
-    return render_template('delete.html', contact=contact)
+    return render_template('delete_contact.html', contact=contact)
 
 #VOIR LES DETAILS D'UN CONTACT
 
-@app.route('/view/<int:id>')
+
+@app.route('/View_contact/<int:id>')
 def view(id):
     conn = get_db_connection()
     contact = conn.execute('SELECT * FROM contacts WHERE id = ?', (id,)).fetchone()
     conn.close()
-    return render_template('view.html', contact=contact)
+    return render_template('View_contact.html', contact=contact)
 
 
 #retour a la page d'acceuil
-@app.route('/home')
+@app.route('/')
 def home():
-    return redirect('/')
+    return redirect('/index')
+
 
 # -----------------------------
 # Lancer l'application
 # -----------------------------
 if __name__ == '__main__':
     app.run(debug=True)
-

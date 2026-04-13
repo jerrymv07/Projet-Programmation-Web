@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Modifier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    
+</head>
+<body>
+    <h1>Modifier le contact</h1>
+
+    <div class="container">
+        <form method="POST">
+            <input type="text" name="nom" value="{{ contact.nom }}" required>
+            <input type="text" name="prenom" value="{{ contact.prenom }}" required>
+            <input type="text" name="telephone" value="{{ contact.telephone }}">
+            <input type="email" name="email" value="{{ contact.email }}">
+            <button type="submit">Mettre à jour</button>
+        </form>
+
+        
+        <a href="/">Retour</a>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+

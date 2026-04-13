@@ -1,3 +1,8 @@
-function changerTexte() {
-    document.getElementById('demo').innerText = "Bravo ! Le texte a changé.";
-}
+document.addEventListener("DOMContentLoaded", () => {
+    const items = document.querySelectorAll("li");
+    items.forEach((item, index) => {
+        setTimeout(() => {
+            item.classList.add("fade-in");
+        }, index * 100);
+    });
+});
